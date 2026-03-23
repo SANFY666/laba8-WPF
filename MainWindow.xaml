@@ -1,0 +1,71 @@
+﻿<Window x:Class="laba8_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Name="mainWindow"
+        Title="Лабораторна робота 8 Зубко Олександр 201-ТК" Height="550" Width="1050"
+        WindowStartupLocation="CenterScreen" Icon="/Notepad_22522.ico">
+
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Ctrl" Command="ApplicationCommands.New"/>
+    </Window.InputBindings>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.New" Executed="NewTab_Click" />
+        <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
+        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
+    </Window.CommandBindings>
+
+    <DockPanel Background="#F0F0F0">
+
+        <ToolBarTray DockPanel.Dock="Top" Background="#F0F0F0" IsLocked="True">
+            <ToolBar Padding="4" Background="#F0F0F0" Width="1050">
+
+                <ToolBar.Resources>
+                    <Style TargetType="{x:Type Thumb}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </Style>
+                </ToolBar.Resources>
+
+                <ComboBox Name="cmbLanguage" Width="100" SelectionChanged="cmbLanguage_SelectionChanged" Margin="0,0,5,0">
+                    <ComboBoxItem Content="Українська" IsSelected="True"/>
+                    <ComboBoxItem Content="English"/>
+                </ComboBox>
+                <Separator />
+
+                <Button Command="ApplicationCommands.New" Name="btnNew" Content="Створити" Margin="2" Padding="5,2" />
+                <Button Command="ApplicationCommands.Open" Name="btnOpen" Content="Відкрити" Margin="2" Padding="5,2" />
+                <Button Command="ApplicationCommands.Save" Name="btnSave" Content="Зберегти" Margin="2" Padding="5,2" />
+                <Button Name="btnCloseAll" Content="Закрити всі" Click="CloseAllTabs_Click" Margin="2" Padding="5,2" Foreground="DarkRed" />
+                <Separator />
+
+                <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold" Content="B" FontWeight="Bold" Width="25" Margin="1" />
+                <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic" Content="I" FontStyle="Italic" Width="25" Margin="1" />
+                <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline" Width="25" Margin="1">
+                    <TextBlock TextDecorations="Underline" Text="U"/>
+                </ToggleButton>
+                <Separator />
+
+                <ComboBox Name="cmbFontColor" Width="90" SelectionChanged="cmbFontColor_SelectionChanged">
+                    <ComboBoxItem Name="cbiColorBlack" Content="Чорний" Tag="Black" IsSelected="True"/>
+                    <ComboBoxItem Name="cbiColorRed" Content="Червоний" Foreground="Red" Tag="Red"/>
+                    <ComboBoxItem Name="cbiColorBlue" Content="Синій" Foreground="Blue" Tag="Blue"/>
+                    <ComboBoxItem Name="cbiColorGreen" Content="Зелений" Foreground="Green" Tag="Green"/>
+                </ComboBox>
+                <Separator />
+
+                <Button Name="btnAlignLeft" Command="EditingCommands.AlignLeft" ToolTip="Ліворуч" FontFamily="Segoe MDL2 Assets" Content="&#xE8E4;" FontSize="14" Width="28" Margin="1" />
+                <Button Name="btnAlignCenter" Command="EditingCommands.AlignCenter" ToolTip="По центру" FontFamily="Segoe MDL2 Assets" Content="&#xE8E3;" FontSize="14" Width="28" Margin="1" />
+                <Button Name="btnAlignRight" Command="EditingCommands.AlignRight" ToolTip="Праворуч" FontFamily="Segoe MDL2 Assets" Content="&#xE8E2;" FontSize="14" Width="28" Margin="1" />
+                <Separator />
+
+                <Button Name="btnImage" Content="Вставити фото" Click="InsertImage_Click" Margin="2" Padding="5,2" />
+                <Separator />
+
+                <ComboBox Name="cmbFontFamily" ToolBar.OverflowMode="Never" Width="140" SelectionChanged="cmbFontFamily_SelectionChanged" Margin="2" />
+                <ComboBox Name="cmbFontSize" ToolBar.OverflowMode="Never" Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" Margin="2" />
+            </ToolBar>
+        </ToolBarTray>
+
+        <TabControl Name="tabControl" SelectionChanged="tabControl_SelectionChanged" Margin="5" />
+    </DockPanel>
+</Window>
